@@ -1,0 +1,180 @@
+image: docker:latest
+
+variables:
+  DOCKER_DRIVER: overlay
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - release
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build --pull -t $CONTAINER_TEST_IMAGE . --build-arg=secret_key=secret
+    - docker push $CONTAINER_TEST_IMAGE
+
+qa_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py qa
+
+user_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test user
+
+bank_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test bank
+
+entity_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test entity
+
+handbook_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test handbook
+
+limit_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test limit
+
+order_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test order
+
+app_test:
+  image: $CONTAINER_TEST_IMAGE
+  stage: test
+  services:
+    - postgres:9.6
+    - redis
+  variables:
+    SECRET_KEY: runner
+    POSTGRES_DB: runner
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: runner
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: 5432
+  script:
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py test app
+
+release-image:
+  stage: release
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - tags
+
+deploy-to-stage:
+  image: garpix/gitlab_deploy
+  stage: deploy
+  script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - ssh -o StrictHostKeyChecking=no -p 9022 garpix@host.staging.garpix.com make --directory=/home/garpix/www/strahgarant deploy TAGB=$CI_COMMIT_REF_NAME
+  environment:
+    name: staging
+  only:
+    - tags

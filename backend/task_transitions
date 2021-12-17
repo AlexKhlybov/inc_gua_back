@@ -1,0 +1,10 @@
+digraph {
+	subgraph cluster_order_Order_state {
+		graph [label="order.Order.state"]
+		"order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" [label=UNDERWRITING_A_NEW_APPLICATION shape=doublecircle]
+		"order.Заявка.state.SENT" [label=SENT shape=circle]
+		"order.Заявка.state.CREATED" [label=CREATED shape=circle]
+		"order.Заявка.state.SENT" -> "order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" [label=underwriting_new]
+		"order.Заявка.state.CREATED" -> "order.Заявка.state.SENT" [label=sent]
+	}
+}

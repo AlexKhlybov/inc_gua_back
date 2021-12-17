@@ -1,0 +1,4 @@
+from .pages.bank_documents import BankDocumentsPageTranslationOptions
+from .pages.bank_limit import BankLimitPageTranslationOptions
+from .pages.bank_tariffs import BankTariffsPageTranslationOptions
+from .pages.banks import BanksPageTranslationOptions

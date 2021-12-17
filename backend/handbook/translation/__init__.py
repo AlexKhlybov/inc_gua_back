@@ -1,0 +1,3 @@
+from .pages.handbook_blacklist import HandbookBlacklistPageTranslationOptions
+from .pages.handbook_warning_signals import HandbookWarningSignalsPageTranslationOptions
+from .pages.handbook_stop_factors import HandbookStopFactorsPageTranslationOptions

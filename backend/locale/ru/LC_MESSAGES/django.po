@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-14 21:55+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: backend/app/service/service.py:11
+msgid "401."
+msgstr "Учетные данные не были предоставлены."
+
+#: backend/app/service/service.py:14
+msgid "403."
+msgstr "У вас нет доступа к данному действию."
+
+#: backend/app/service/service.py:17
+msgid "404."
+msgstr "Страница не найдена."
+
+#: backend/app/service/service.py:20
+msgid "405."
+msgstr "Метод \"{method}\" не разрешен."
+
+#: backend/app/validators.py:9
+#, python-brace-format
+msgid "minimum number of characters {_min}"
+msgstr "минимальное количество символов {_min}"
+
+#: backend/app/validators.py:11
+#, python-brace-format
+msgid "maximum number of characters {_max}"
+msgstr "максимальное количество символов {_max}"
+
+#: backend/app/validators.py:22
+msgid "cпециальные символы не допускаются, за исключением \"-\""
+msgstr "cпециальные символы не допускаются, за исключением \"-\""
+
+#: backend/app/validators.py:30
+msgid "the value must be numeric"
+msgstr "значение должно быть числовым"
+
+#: backend/entity/admin/legal_entity.py:18
+msgid "Bank info"
+msgstr "Данные банка"
+
+#: backend/entity/admin/person.py:12 backend/user/admin/user.py:21
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: backend/entity/admin/person.py:14
+msgid "Passport info"
+msgstr "Паспортные данные"
+
+#: backend/limit/viewsets/limit_principal.py:41
+#: backend/order/viewsets/order.py:100
+msgid "there is no kontur_key or kontur_url in environment"
+msgstr "не указаны kontur_key или kontur_url в виртуальном окружении"
+
+#: backend/limit/viewsets/limit_principal.py:52
+msgid "principal or order not exist"
+msgstr "принципал или заявка отсутствуют"
+
+#: backend/limit/viewsets/limit_principal.py:57
+msgid "there is no amount in the application"
+msgstr "не обнаружена сумма"
+
+#: backend/limit/viewsets/limit_principal.py:75
+msgid "no data on the principal with the given inn"
+msgstr "нет данных по принципалу с указанным ИНН"
+
+#: backend/order/views/kontur.py:17
+msgid " no kontur_key or kontur_url in environment"
+msgstr "не указаны kontur_key или kontur_url в виртуальном окружении"
+
+#: backend/order/views/oliver_wyman.py:192
+msgid "there are no oliver_wyman's params in environment"
+msgstr "не указаны параметры oliver_wyman в виртуальном окружении"
+
+#: backend/order/viewsets/order.py:108
+#, fuzzy
+#| msgid "there is no order with this id"
+msgid "there is no principal with this inn"
+msgstr "нет заявки в данным id"
+
+#: backend/order/viewsets/order.py:115
+msgid "there are no oliver_wyman params in environment"
+msgstr "не указаны параметры oliver_wyman в виртуальном окружении"
+
+#: backend/order/viewsets/order.py:122
+msgid "no supplierInn"
+msgstr "не указан supplierInn"
+
+#: backend/order/viewsets/order.py:124
+msgid "no customerInn"
+msgstr "не указан customerInn"
+
+#: backend/order/viewsets/order.py:129
+#, fuzzy
+#| msgid "there is no order with this id"
+msgid "there is no principal with this supplierInn"
+msgstr "нет заявки в данным id"
+
+#: backend/order/viewsets/order.py:131
+#, fuzzy
+#| msgid "there is no order with this id"
+msgid "there is no beneficiary with this customerInn"
+msgstr "нет заявки в данным id"
+
+#: backend/order/viewsets/order.py:133
+msgid "there are more then one principal with this supplierInn"
+msgstr "есть более, чем один принципал с этим supplierInn"
+
+#: backend/order/viewsets/order.py:135
+msgid "there are more then one beneficiary with this customerInn"
+msgstr "есть более, чем один бенефициар с этим customerInn"
+
+#: backend/order/viewsets/order.py:149
+msgid "no order"
+msgstr "нет заявки"
+
+#: backend/order/viewsets/order.py:153
+msgid "there is no order with this id"
+msgstr "нет заявки в данным id"
+
+#: backend/user/admin/user.py:23
+msgid "Permissions"
+msgstr "Права"
+
+#: backend/user/admin/user.py:26
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: backend/user/models/manager.py:16
+msgid "The Email must be set"
+msgstr "Необходимо указать адрес электройнной почты"
+
+#: backend/user/models/manager.py:32
+msgid "Superuser must have is_staff=True."
+msgstr "У суперпользователя должно быть установлена опция 'Статус персонала'"
+
+#: backend/user/models/manager.py:34
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+"У суперпользователя должна быть установлена опция 'Статус суперпользователя'"
+
+#~ msgid "401.au"
+#~ msgstr "Учетные данные не были предоставлены."
+
+#~ msgid "403.au"
+#~ msgstr "У вас нет доступа к данному действию."
+
+#~ msgid "404.au"
+#~ msgstr "Страница не найдена."
+
+#~ msgid "405.au"
+#~ msgstr "Метод \"{method}\" не разрешен."
+
+#~ msgid "401.co"
+#~ msgstr "Учетные данные не были предоставлены."
+
+#~ msgid "403.co"
+#~ msgstr "У вас нет доступа к данному действию."
+
+#~ msgid "404.co"
+#~ msgstr "Страница не найдена."
+
+#~ msgid "405.co"
+#~ msgstr "Метод \"{method}\" не разрешен."
+
+#~ msgid "401.st"
+#~ msgstr "Учетные данные не были предоставлены."
+
+#~ msgid "403.st"
+#~ msgstr "У вас нет доступа к данному действию."
+
+#~ msgid "404.st"
+#~ msgstr "Страница не найдена."
+
+#~ msgid "405.st"
+#~ msgstr "Метод \"{method}\" не разрешен."

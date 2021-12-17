@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.1"
+garpixcms = "==2.18.0"
+crypto = "*"
+pycryptodomex = "*"
+cryptography = "*"
+django-filter = "*"
+coverage = "*"
+python-gettext = "*"
+reportlab = "*"
+django-fsm = "*"
+graphviz = "*"
+dateparser = "*"
+django-fsm-log = "*"
+drf-yasg = "*"
+garpix-auth = "*"
+
+[dev-packages]
+icecream = "*"
+
+[requires]
+python_version = "3.8"

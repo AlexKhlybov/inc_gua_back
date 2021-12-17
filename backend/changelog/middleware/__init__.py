@@ -1,0 +1,1 @@
+from changelog.middleware.changelog import LoggedInUser, LoggedInUserMiddleware

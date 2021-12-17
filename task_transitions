@@ -1,0 +1,23 @@
+digraph {
+	subgraph cluster_order_Order_state {
+		graph [label="order.Order.state"]
+		"order.Заявка.state.QUOTE_AUTO" [label=QUOTE_AUTO shape=doublecircle]
+		"order.Заявка.state.UNDERWRITING_REFUSAL" [label=UNDERWRITING_REFUSAL shape=doublecircle]
+		"order.Заявка.state.SENT" [label=SENT shape=doublecircle]
+		"order.Заявка.state.QUOTE_AUCTION" [label=QUOTE_AUCTION shape=doublecircle]
+		"order.Заявка.state.QUOTE_INDIVIDUAL" [label=QUOTE_INDIVIDUAL shape=doublecircle]
+		"order.Заявка.state.CREATED" [label=CREATED shape=circle]
+		"order.Заявка.state.UNDERWRITING_IN_PROGRESS" [label=UNDERWRITING_IN_PROGRESS shape=circle]
+		"order.Заявка.state.UNDERWRITING_REQUERY" [label=UNDERWRITING_REQUERY shape=circle]
+		"order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" [label=UNDERWRITING_A_NEW_APPLICATION shape=circle]
+		"order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" -> "order.Заявка.state.UNDERWRITING_IN_PROGRESS" [label=to_underwriting_in_progress]
+		"order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" -> "order.Заявка.state.UNDERWRITING_REQUERY" [label=to_underwriting_requery]
+		"order.Заявка.state.UNDERWRITING_IN_PROGRESS" -> "order.Заявка.state.QUOTE_AUTO" [label=to_quote_auto]
+		"order.Заявка.state.UNDERWRITING_IN_PROGRESS" -> "order.Заявка.state.QUOTE_INDIVIDUAL" [label=to_quote_individual]
+		"order.Заявка.state.UNDERWRITING_IN_PROGRESS" -> "order.Заявка.state.UNDERWRITING_REFUSAL" [label=to_underwriting_refusal]
+		"order.Заявка.state.UNDERWRITING_IN_PROGRESS" -> "order.Заявка.state.QUOTE_AUCTION" [label=to_quote_auction]
+		"order.Заявка.state.CREATED" -> "order.Заявка.state.SENT" [label=sent]
+		"order.Заявка.state.UNDERWRITING_REQUERY" -> "order.Заявка.state.UNDERWRITING_IN_PROGRESS" [label=to_underwriting_in_progress]
+		"order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" -> "order.Заявка.state.UNDERWRITING_A_NEW_APPLICATION" [label=to_underwriting_a_new_application]
+	}
+}
